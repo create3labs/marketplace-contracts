@@ -13,6 +13,7 @@
     "hardhat": "^2.12.6"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^4.4.0",
     "@rari-capital/solmate": "6.2.0"
   }
 }
