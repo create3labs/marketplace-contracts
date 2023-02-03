@@ -5,7 +5,7 @@
 - Reservoir Router: from https://github.com/reservoirprotocol/core/tree/main/packages/contracts. 
 
 
-## Comment on the Reservoir Router 
+## Comments on the Reservoir Router 
 - We take the V5 Router 
 - We removed the support for non-seaport exchanges from the constructor for simplification. The current chain we want to serve with this repo has no non-seaport exchanges. 
 - We remove the "immutable" flag for some public variables in relation with non-seaport changes to prevent compiler errors
