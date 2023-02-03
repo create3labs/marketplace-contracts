@@ -1,25 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import {IERC1155} from "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
-
 interface IX2Y2 {
     struct OrderItem {
         uint256 price;
         bytes data;
-    }
-
-    struct ERC721Pair {
-        IERC721 token;
-        uint256 tokenId;
-    }
-
-    struct ERC1155Pair {
-        IERC1155 token;
-        uint256 tokenId;
-        uint256 amount;
     }
 
     struct Order {
@@ -29,7 +14,7 @@ interface IX2Y2 {
         uint256 intent;
         uint256 delegateType;
         uint256 deadline;
-        IERC20 currency;
+        address currency;
         bytes dataMask;
         OrderItem[] items;
         bytes32 r;

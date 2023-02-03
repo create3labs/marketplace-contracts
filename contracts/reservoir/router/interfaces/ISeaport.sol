@@ -40,33 +40,12 @@ interface ISeaport {
         address recipient;
     }
 
-    struct SpentItem {
-        ItemType itemType;
-        address token;
-        uint256 identifier;
-        uint256 amount;
-    }
-
     struct ReceivedItem {
         ItemType itemType;
         address token;
         uint256 identifier;
         uint256 amount;
         address recipient;
-    }
-
-    struct OrderComponents {
-        address offerer;
-        address zone;
-        OfferItem[] offer;
-        ConsiderationItem[] consideration;
-        OrderType orderType;
-        uint256 startTime;
-        uint256 endTime;
-        bytes32 zoneHash;
-        uint256 salt;
-        bytes32 conduitKey;
-        uint256 counter;
     }
 
     struct OrderParameters {
@@ -81,11 +60,6 @@ interface ISeaport {
         uint256 salt;
         bytes32 conduitKey;
         uint256 totalOriginalConsiderationItems;
-    }
-
-    struct Order {
-        OrderParameters parameters;
-        bytes signature;
     }
 
     struct AdvancedOrder {
@@ -120,44 +94,6 @@ interface ISeaport {
         bytes32 conduitKey;
     }
 
-    struct ZoneParameters {
-        bytes32 orderHash;
-        address fulfiller;
-        address offerer;
-        SpentItem[] offer;
-        ReceivedItem[] consideration;
-        bytes extraData;
-        bytes32[] orderHashes;
-        uint256 startTime;
-        uint256 endTime;
-        bytes32 zoneHash;
-    }
-
-    struct Schema {
-        uint256 id;
-        bytes metadata;
-    }
-
-    function getOrderHash(OrderComponents calldata order)
-        external
-        view
-        returns (bytes32 orderHash);
-
-    function getOrderStatus(bytes32 orderHash)
-        external
-        view
-        returns (
-            bool isValidated,
-            bool isCancelled,
-            uint256 totalFilled,
-            uint256 totalSize
-        );
-
-    function getCounter(address offerer)
-        external
-        view
-        returns (uint256 counter);
-
     function fulfillAdvancedOrder(
         AdvancedOrder calldata advancedOrder,
         CriteriaResolver[] calldata criteriaResolvers,
@@ -177,11 +113,6 @@ interface ISeaport {
         external
         payable
         returns (bool[] memory availableOrders, Execution[] memory executions);
-
-    function matchOrders(
-        Order[] calldata orders,
-        Fulfillment[] calldata fulfillments
-    ) external payable returns (Execution[] memory executions);
 
     function matchAdvancedOrders(
         AdvancedOrder[] calldata advancedOrders,
