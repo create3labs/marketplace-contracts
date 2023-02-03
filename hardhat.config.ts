@@ -15,6 +15,15 @@ const config: HardhatUserConfig = {
           },
         },
       },
+      {
+        version: "0.4.22",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 1000,
+          },
+        },
+      },
     ],
     overrides: {
       "contracts/conduit/Conduit.sol": {
