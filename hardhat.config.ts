@@ -47,7 +47,16 @@ const config: HardhatUserConfig = {
         },
       },
     },
-  }
+  },
+  networks: {
+    zenTest: {
+      chainId: 1661,
+      ...(process.env.PK_ZEN_TEST_DEPLOYER && {
+        accounts: [process.env.PK_ZEN_TEST_DEPLOYER ?? ""],
+      }),
+      url: process.env.ZEN_TEST_RPC_URL ?? "",
+    },
+  },
 };
 
 export default config;
